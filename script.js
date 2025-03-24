@@ -8,16 +8,24 @@ function Game() {
         },
 
         setBoard(row, col, tileInput){
-            this.gameBoard[row][col] = tileInput;
+            gameBoard[row][col] = tileInput;
         },
 
         modifyTile(row,col,tileInput){
-            if(this.getBoard(row,col) == ''){
-                this.setBoard(row, col, tileInput);
+            if(gameBoard[row,col] === ''){
+                gameBoard[row][col] = tileInput;
             }
             else{
                 //User inputs into a tile that is already filled --> Ignore
             }
+        },
+
+        display(){
+            return gameBoard;
+        },
+
+        resetBoard(){
+            gameBoard = [['','','',], ['','','',], ['','','',]];
         }
 
     };
