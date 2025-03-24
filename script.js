@@ -12,7 +12,7 @@ function Game() {
         },
 
         modifyTile(row,col,tileInput){
-            if(gameBoard[row,col] === ''){
+            if(gameBoard[row][col] === ''){
                 gameBoard[row][col] = tileInput;
             }
             else{
@@ -36,12 +36,19 @@ function Player(name, tileInput){
     return {name, tileInput};
 }
 
-Player Jason = new Player('Dunk' 'X');
-Player Fluffy = new Player('Fluf', 'Y');
+const tic = Player('Tic', 'X');
+const tac = Player('Tac', 'Y');
 
 function GameController(p1, p2){
     let scoreP1 = 0;
     let scoreP2 = 0;
 
-    
+    return {
+        increment(score){
+            score++;
+        },
+        display(){
+            return {scoreP1, scoreP2};
+        }
+    }
 }
