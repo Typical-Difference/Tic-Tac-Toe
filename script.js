@@ -31,3 +31,17 @@ function Game() {
     };
 
 }
+
+function Player(name, tileInput){
+    return {name, tileInput};
+}
+
+Player Jason = new Player('Dunk' 'X');
+Player Fluffy = new Player('Fluf', 'Y');
+
+function GameController(p1, p2){
+    let scoreP1 = 0;
+    let scoreP2 = 0;
+
+    
+}
