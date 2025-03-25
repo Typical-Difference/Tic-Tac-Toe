@@ -75,7 +75,11 @@ function GameController (p1, p2){
 
     function playTurn(row, col){
         if(Game.getBoard(row, col) === ''){
-            setBoard(row, col, currentPlayer.tileInput);
+            Game.setBoard(row, col, currentPlayer.tileInput);
+            if(Game.checkWinner()){
+                console.log(`Winner: ${currentPlayer.name}`);
+            }
+            switchTurn();
         }
     }
 
