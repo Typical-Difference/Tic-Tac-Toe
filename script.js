@@ -1,13 +1,14 @@
-//Game is a factory function
+//Game is a factory function --> A factory function will return objects.
 //Single instance -> module pattern
 function Game() {
+    //Board is being lexically scoped into this closure in the Game() function.
     let board = [['','','',], ['','','',], ['','','',]]; //3 x 3 tile private variable
 
-    function getBoard(row, col){
+    function getTile(row, col){
         return board[row][col];
     }
 
-    function setBoard(row, col, tileInput){
+    function setTile(row, col, tileInput){
         board[row][col] = tileInput;
     }
 
@@ -20,7 +21,7 @@ function Game() {
         }
     }
 
-    function display(){
+    function displayBoard(){
         return board;
     }
 
@@ -41,9 +42,9 @@ function Game() {
         ];
         for(const combination of winningCombinations){
             const[a, b, c] = combination;
-            if(board[a[0]][a[1]] === board[b[0]][b[1]] && 
-                board[a[0]][a[1]] === board[c[0]][c[1]] && 
-                board[b[0]][b[1]] === board[c[0]][c[1]]){
+            if(board[a[0]][a[1]] && 
+                board[a[0]][a[1]] === board[b[0]][b[1]] && 
+                board[a[0]][a[1]] === board[c[0]][c[1]]){
                     return board[a[0]][a[1]];
             }
         }
@@ -51,7 +52,7 @@ function Game() {
 
     return {
         //return functions that perform operations on the gameBoard
-        getBoard, setBoard, modifyTile, display, resetBoard, checkWinner
+        getTile, setTile, modifyTile, displayBoard, resetBoard, checkWinner
     };
 
 }
@@ -74,8 +75,8 @@ function GameController (p1, p2){
     }
 
     function playTurn(row, col){
-        if(Game.getBoard(row, col) === ''){
-            Game.setBoard(row, col, currentPlayer.tileInput);
+        if(Game.getTile(row, col) === ''){
+            Game.setTile(row, col, currentPlayer.tileInput);
             if(Game.checkWinner()){
                 console.log(`Winner: ${currentPlayer.name}`);
             }
@@ -87,7 +88,7 @@ function GameController (p1, p2){
         return score++;
     }
 
-    function display(){
+    function displayScore(){
         return {scoreP1, scoreP2};
     }
 
